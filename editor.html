@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor — Gregory Archive</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/editor.css">
+<script src="config.js"></script>
+</head>
+<body class="ed">
+<header class="top">
+  <a class="brand" href="index.html" title="Open the public site"><span class="brand-mark">Γ</span><span><b>Gregory Archive</b><small>Editor</small></span></a>
+  <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="q" type="search" placeholder="Search all fields…" autocomplete="off"></div>
+  <span class="conn" id="conn">Demo mode</span>
+  <div class="ed-actions">
+    <button class="btn" id="addBtn">+ Add images</button>
+    <div class="menu"><button class="btn" id="toolsBtn">Tools ▾</button>
+      <div class="menu-pop" id="toolsMenu" hidden>
+        <button data-tool="bulk">Bulk edit selected / filtered…</button>
+        <button data-tool="replace">Find &amp; replace…</button>
+        <button data-tool="clean">Clean up values (merge spellings)…</button>
+        <button data-tool="columns">Choose columns…</button>
+        <button data-tool="exportChanges">Download pending changes (CSV)</button>
+        <button data-tool="discard">Discard pending changes</button>
+      </div></div>
+    <button class="btn primary" id="saveBtn" disabled>Save</button>
+    <button class="btn" id="publishBtn" title="Rebuild the public site from the Sheet">Publish</button>
+    <button class="btn ghost icon" id="settingsBtn" title="Connection settings">⚙</button>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="side">
+    <div class="side-head"><b>Records</b><button class="link" id="clear">Clear</button></div>
+    <h4>Slide box</h4>
+    <select id="boxSel" class="full"><option value="">All boxes</option></select>
+    <h4>Needs attention</h4>
+    <ul class="issues" id="issues"></ul>
+    <h4>Selection</h4>
+    <p class="muted small" id="selInfo">Tick rows to bulk edit them.</p>
+    <button class="link" id="selAll">Select all filtered</button> · <button class="link" id="selNone">Select none</button>
+    <h4>Shortcuts</h4>
+    <p class="muted small keys"><kbd>↑↓←→</kbd> move · <kbd>Enter</kbd> edit / save cell · <kbd>Tab</kbd> next cell · <kbd>Esc</kbd> cancel · <kbd>Space</kbd> open image · <kbd>Ctrl/⌘ S</kbd> save</p>
+  </aside>
+
+  <main class="main">
+    <div class="bar"><div class="count" id="count">Loading…</div><div class="chips" id="chips"></div>
+      <div class="bar-right"><span class="pending" id="pending"></span></div></div>
+    <div class="view"><div class="sheet" id="sheet" tabindex="0"><div class="sheet-inner" id="sheetInner"></div></div></div>
+  </main>
+
+  <aside class="form" id="form"><div class="form-empty">Select a row to edit the full record.</div></aside>
+</div>
+
+<div class="modal" id="modal" hidden><div class="modal-card" role="dialog" aria-modal="true"><button class="modal-x" data-close>×</button><div id="modalBody"></div></div></div>
+<div class="toast" id="toast" hidden></div>
+<datalist id="dl-active"></datalist>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<script type="module" src="js/editor.js"></script>
+</body>
+</html>

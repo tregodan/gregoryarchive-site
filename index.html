@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gregory Archive — Slide Collection</title>
+<meta name="description" content="Browse, search and visualize the Timothy E. Gregory slide archive: 31,000+ photographs of Greece, Byzantium and the Mediterranean.">
+<link rel="preconnect" href="https://gregoryslides.s3.amazonaws.com">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="css/app.css">
+<script src="config.js"></script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" id="brand" href="#"><span class="brand-mark">Γ</span><span><b>Gregory Archive</b><small>Slide Collection</small></span></a>
+  <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="q" type="search" placeholder="Search titles, subjects, places, boxes…" autocomplete="off" aria-label="Search the archive"></div>
+  <nav class="views" id="views" aria-label="Views">
+    <a data-v="gallery" href="#gallery">Gallery</a>
+    <a data-v="boxes" href="#boxes">Slide Boxes</a>
+    <a data-v="table" href="#table">Table</a>
+    <a data-v="map" href="#map">Map</a>
+    <a data-v="charts" href="#charts">Charts</a>
+  </nav>
+  <a class="story" id="story" href="#" target="_blank" rel="noopener">The story ↗</a>
+</header>
+
+<div class="fbar" id="fbar">
+  <div class="filters" id="filters"></div>
+  <button class="link" id="clear" hidden>Clear filters</button>
+  <div class="bar-right">
+    <div class="count" id="count">Loading…</div>
+    <label class="ctl" id="sortCtl"><select id="sort" aria-label="Sort">
+      <option value="box">Slide box order</option>
+      <option value="title">Title A–Z</option>
+      <option value="subjOld">Subject date, oldest</option>
+      <option value="subjNew">Subject date, newest</option>
+      <option value="photoOld">Photographed, oldest</option>
+      <option value="photoNew">Photographed, newest</option>
+      <option value="loc">Location A–Z</option>
+    </select></label>
+    <label class="ctl" id="sizeCtl" title="Card size"><input type="range" id="size" min="120" max="360" step="20" value="200" aria-label="Card size"></label>
+    <div class="menu"><button class="btn" id="exportBtn">Export</button>
+      <div class="menu-pop right" id="exportMenu" hidden>
+        <button data-x="csv">Download CSV (filtered)</button>
+        <button data-x="json">Download JSON (filtered)</button>
+        <button data-x="link">Copy link to this view</button>
+      </div></div>
+  </div>
+</div>
+<div class="pop" id="pop" hidden></div>
+
+<main class="view" id="view"><div class="loading-big"><div class="spinner"></div><p>Loading the archive…</p></div></main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
